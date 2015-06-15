@@ -128,6 +128,9 @@ limitations under the License.
 	<!-- Testing Properties -->
 	<PropertyGroup>
 		<TestDetectionExpression>.[\.]((Integration|Unit)?Test[s]{0,1}?)</TestDetectionExpression>
+		<ItemGroup>
+			<TestAssemblies Include="$(OutputPath)Castle.Core.Tests.dll" />
+		</ItemGroup>
 
 		<TestRunner_Enabled Condition="'$(TestRunner_Enabled)' == ''">true</TestRunner_Enabled>
 		<!-- Controls whether tests are run -->
@@ -142,7 +145,6 @@ limitations under the License.
 	<PropertyGroup>
 		<NUnitExecutable Condition="'$(NUnitExecutable)' == ''">nunit-console-x86.exe</NUnitExecutable>
 		<NUnitPath Condition="'$(NUnitPath)' == ''">$(ToolsPath)/NUnit/bin/</NUnitPath>
-		<MSBuildCommunityTasksPath Condition="'$(MSBuildCommunityTasksPath)' == ''">$(ToolsPath)/MSBuildCommunityTasks</MSBuildCommunityTasksPath>
 	</PropertyGroup>
 
 
@@ -153,10 +155,6 @@ limitations under the License.
 			UpdateAssemblyInfoFiles
 		</CoreCompileDependsOn>
 	</PropertyGroup>
-
-
-	<!-- Import 3rd party targets -->
-	<Import Project="$(MSBuildCommunityTasksPath)/MSBuild.Community.Tasks.Targets" />
 
 
 	<!-- Updates the AssemblyInfo. The inputs are the same as the CoreCompileDependsOn target
